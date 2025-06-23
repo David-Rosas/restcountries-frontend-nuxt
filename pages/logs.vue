@@ -1,14 +1,13 @@
-// pages/logs.vue
 <template>
-  <div class="max-w-6xl mx-auto p-6">
+  <div class="max-w-6xl mx-auto p-6 ">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">
-      📝 Historial de Consultas
+      Historial de Consultas
     </h1>
 
     <DateRangeFilter
       :start-date="startDate"
       :end-date="endDate"
-      @update:range="updateDateRange"
+      @filter="updateDateRange"
     />
 
     <div v-if="error" class="text-red-600 mt-4">{{ error }}</div>
@@ -59,9 +58,9 @@ const fetchLogs = async () => {
   }
 };
 
-const updateDateRange = (range: { start: string; end: string }) => {
-  startDate.value = range.start;
-  endDate.value = range.end;
+const updateDateRange = ( data: object ) => {
+  startDate.value = data.startDate;
+  endDate.value = data.endDate;
   fetchLogs();
 };
 
